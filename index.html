@@ -42,11 +42,16 @@ text {
   pointer-events: none;
 }
 
+.viewport {
+	border-style: dotted;
+	border-width: 1px;
+}
+
 
 </style>
 <body>
 <h1>Game of Thrones Battles</h1>
-<em>Every battle beteween major houses and groups. Hover the line for details.</em>
+<p>Every battle beteween major houses and groups. Hover the line for details.</p>
 <script>
 
 // get the data
@@ -64,8 +69,8 @@ links.forEach(function(link) {
 });
 
 //setup our window
-var width = window.innerWidth,
-    height = window.innerHeight;
+var width = 800,
+    height = 600;
 
 //build the layout
 var force = d3.layout.force()
@@ -73,13 +78,15 @@ var force = d3.layout.force()
     .links(links)
     .size([width, height])
     .linkDistance(80)
-    .charge(-1500)
+    .charge(-500)
     .on("tick", tick)
     .start();
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+		.attr("class", "viewport");
+
 
 //add hovercard
 var hovercard = d3.select("body").append("div")
@@ -124,8 +131,8 @@ node.append("image")
         .attr("xlink:href", function(d) {  return "img/"+encodeURI(d.name).toLowerCase().replace(/'/g, '')+".png"; })
         .attr("x", function(d) { return -25;})
         .attr("y", function(d) { return -25;})
-        .attr("height", 40)
-        .attr("width", 40);
+        .attr("height", 50)
+        .attr("width", 50);
 
 
 // add the text
