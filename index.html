@@ -64,16 +64,16 @@ links.forEach(function(link) {
 });
 
 //setup our window
-var width = window.innerWidth*0.8,
-    height = window.innerHeight*0.8;
+var width = window.innerWidth,
+    height = window.innerHeight;
 
 //build the layout
 var force = d3.layout.force()
     .nodes(d3.values(nodes))
     .links(links)
     .size([width, height])
-    .linkDistance(100)
-    .charge(-1800)
+    .linkDistance(80)
+    .charge(-1500)
     .on("tick", tick)
     .start();
 
@@ -124,8 +124,8 @@ node.append("image")
         .attr("xlink:href", function(d) {  return "img/"+encodeURI(d.name).toLowerCase().replace(/'/g, '')+".png"; })
         .attr("x", function(d) { return -25;})
         .attr("y", function(d) { return -25;})
-        .attr("height", 50)
-        .attr("width", 50);
+        .attr("height", 40)
+        .attr("width", 40);
 
 
 // add the text
